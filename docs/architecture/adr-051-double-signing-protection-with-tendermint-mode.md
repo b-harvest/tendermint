@@ -7,8 +7,8 @@
 
 There exists two main purposes for this ADR.
 
-1) To introduce the simplest functional abstraction of Tendermint Mode(https://github.com/tendermint/tendermint/issues/2237)
-2) To prevent double signing incidents by node operators' mistakes or program malfunctioning
+1) To introduce the simplest functional abstraction of Tendermint Mode
+2) To provide a prevention method for double signing incidents mistakenly executed by validators 
 
 
 ## Decision
@@ -19,7 +19,7 @@ We would like to suggest a simple Tendermint mode abstraction with a double sign
 - fullnode mode & validator mode
 - which reactor to include for each node
 - where to modify in codebase
-- cli command and default
+- cli command and RPC modification
 
 2) a double signing prevention method
 - methodology : query recent consensus results to find out whether node's consensus key is used on consensus recently or not
@@ -56,11 +56,12 @@ panic stop of the state machine because consensus votes with the consensus key a
 
 2) double signing prevention method
 - When the prevention method is on, restarting a validator node will panic because the node itself voted on consensus
-with the same consensus key. 
-- So, validators should stop the state machine, wait for some blocks, and then restart the state machine to avoid panic stop.
+with the same consensus key. So, validators should stop the state machine, wait for some blocks, and then restart the state 
+machine to avoid panic stop.
 
 ### Neutral
 
 ## References
 
 * double-signing protection(https://github.com/tendermint/tendermint/issues/4059)
+* Tendermint "mode"(https://github.com/tendermint/tendermint/issues/2237)
