@@ -895,6 +895,13 @@ func (vals *ValidatorSet) StringIndented(indent string) string {
 
 }
 
+// ResetPriorities resets the ProposerPriority of all validators to 0.
+func (vals *ValidatorSet) ResetPriorities() {
+	for _, val := range vals.Validators {
+		val.ProposerPriority = 0
+	}
+}
+
 //-------------------------------------
 
 // ValidatorsByVotingPower implements sort.Interface for []*Validator based on
