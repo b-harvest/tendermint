@@ -35,7 +35,7 @@ func main() {
 		cli.NewCompletionCmd(rootCmd, true),
 	)
 
-	// NOTE:
+	// NOTE: small fix
 	// Users wishing to:
 	//	* Use an external signer for their validators
 	//	* Supply an in-proc abci app
