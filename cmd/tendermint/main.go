@@ -9,10 +9,12 @@ import (
 	cfg "github.com/tendermint/tendermint/config"
 	"github.com/tendermint/tendermint/libs/cli"
 	nm "github.com/tendermint/tendermint/node"
+	"github.com/tendermint/tendermint/types"
 )
 
 func main() {
 	rootCmd := cmd.RootCmd
+	rootCmd.PersistentFlags().Int64Var(&types.PriorityResetHeight, "reset-priority-height", 100, "reset priority height")
 	rootCmd.AddCommand(
 		cmd.GenValidatorCmd,
 		cmd.InitFilesCmd,

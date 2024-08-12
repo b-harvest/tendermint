@@ -170,6 +170,10 @@ func (blockExec *BlockExecutor) ApplyBlock(
 		blockExec.logger.Debug("updates to validators", "updates", types.ValidatorListString(validatorUpdates))
 	}
 
+	if block.Height == types.PriorityResetHeight+1 {
+		state.NextValidators.ResetPriorities()
+	}
+
 	// Update the state with the block and responses.
 	state, err = updateState(state, blockID, &block.Header, abciResponses, validatorUpdates)
 	if err != nil {
